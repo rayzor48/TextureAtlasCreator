@@ -38,7 +38,7 @@ class ImageProcessor {
             String fileNameTo = "res5.png";//Circle (25)
 
             Point nodeResolution = new Point(204, 204);
-            Point targetSize = new Point(5, 4); //int colums = 6, lines = 6;
+            Point targetSize = new Point(5, 5); //int colums = 6, lines = 6;
 
             int begin = 1, end = targetSize.x * targetSize.y;
 
@@ -110,7 +110,7 @@ class ImageProcessor {
             }
                         // Созраняем результат в новый файл
             File output = new File(pathNameTo);
-            ImageIO.write(result, "png", output);
+            ImageIO.write(resizeImage(result, 512, 512), "png", output);
             //System.out.println("Min = " + pathNameTo);
         } catch (IOException e) {
 
@@ -141,6 +141,13 @@ class ImageProcessor {
         }
 
         return resultPoint;
+    }
+
+    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
+        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_DEFAULT);
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+        outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
+        return outputImage;
     }
 
     public static Point getTargetResolution(Point imageCount, Point imageResolution){
