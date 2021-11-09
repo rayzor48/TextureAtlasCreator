@@ -32,17 +32,17 @@ class ImageProcessor {
 
 
         try {
-            String patternPathIn ="D:\\ForTheAtlasTexture\\03\\";
+            String patternPathIn ="D:\\ForTheAtlasTexture\\01\\";
             String patternPathTo ="D:\\ForTheAtlasTexture\\Result\\";
-            String fileName = "";//Circle (25)
-            String fileNameTo = "res5.png";//Circle (25)
+            String fileName = "Circle (";//25)
+            String fileNameTo = "res64.png";//Circle (25)
 
             Point nodeResolution = new Point(204, 204);
             Point targetSize = new Point(5, 5); //int colums = 6, lines = 6;
 
             int begin = 1, end = targetSize.x * targetSize.y;
 
-            String sufficsName =".png";
+            String sufficsName =").png";
 
             int min = 1000;
 
@@ -50,7 +50,7 @@ class ImageProcessor {
 
             Point resultResolution = getTargetResolution(targetSize, nodeResolution);
 
-            BufferedImage result = new BufferedImage(resultResolution.x, resultResolution.y, 6);
+            BufferedImage result = new BufferedImage(resultResolution.x, resultResolution.y, BufferedImage.TYPE_INT_ARGB);
 
             int maxValuex = targetSize.x > targetSize.y ? targetSize.x : targetSize.x;
             //int maxValuey = targetSize.x > targetSize.y ? targetSize.x : targetSize.y;
@@ -75,10 +75,11 @@ class ImageProcessor {
                         int blue = color.getBlue();
                         int red = color.getRed();
                         int green = color.getGreen();
-                        int alpha = source.getRGB(x, y) >> 24 & 0xff;
+                        int alpha = color.getAlpha();//source.getRGB(x, y) >> 24 & 0xff;
 //                              System.out.println("Red: " + color.getRed() + "  Green: " + color.getGreen() + " Blue: " + color.getBlue() + " Alpha: " + color.getAlpha() );//log output
                         //System.out.println(color);
                         // Применяем стандартный алгоритм для получения черно-белого изображения
+
 
                         // Если вы понаблюдаете, то заметите что у любого оттенка серого цвета, все каналы имеют
                         // одно и то же значение. Так, как у нас изображение тоже будет состоять из оттенков серого
@@ -110,7 +111,8 @@ class ImageProcessor {
             }
                         // Созраняем результат в новый файл
             File output = new File(pathNameTo);
-            ImageIO.write(resizeImage(result, 512, 512), "png", output);
+            ImageIO.write(resizeImage(result, 1024, 1024), "png", output);
+//            ImageIO.write(result, "png", output);
             //System.out.println("Min = " + pathNameTo);
         } catch (IOException e) {
 
@@ -144,8 +146,8 @@ class ImageProcessor {
     }
 
     public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
-        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_DEFAULT);
-        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_RGB);
+        Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_AREA_AVERAGING);
+        BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
         outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
         return outputImage;
     }
