@@ -8,18 +8,15 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="536.0" prefWidth="949.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
     <columnConstraints>
@@ -33,7 +30,7 @@
                         <Menu mnemonicParsing="false" text="File">
                             <items>
                                 <MenuItem fx:id="OpenFile" mnemonicParsing="false" onAction="#openNewFile" text="Open file" />
-                                <MenuItem mnemonicParsing="false" text="Save" />
+                                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveNewFile" text="Save" />
                                 <MenuItem mnemonicParsing="false" text="Load" />
                             </items>
                         </Menu>
@@ -55,58 +52,31 @@
                         <Cursor fx:constant="DEFAULT" />
                     </cursor>
                 </MenuBar>
-                <HBox prefHeight="100.0" prefWidth="1038.0">
-                    <children>
-                        <ScrollPane fitToHeight="true" minHeight="-Infinity" minViewportHeight="390.0" minWidth="-Infinity" prefHeight="655.0" prefViewportHeight="700.0" prefWidth="736.0">
-                            <content>
-                                <AnchorPane fx:id="anchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="2000.0" AnchorPane.bottomAnchor="233.0" AnchorPane.topAnchor="0.0" />
-                            </content>
-                        </ScrollPane>
-                        <Pane prefHeight="200.0" prefWidth="216.0">
-                            <children>
-                                <Button fx:id="button" layoutX="30.0" layoutY="546.0" mnemonicParsing="false" onAction="#click" prefHeight="35.0" prefWidth="70.0" text="getMap" />
-                        <Button fx:id="buttonPath" layoutX="30.0" layoutY="590.0" mnemonicParsing="false" onAction="#getPath" prefHeight="35.0" prefWidth="70.0" text="getPath" />
-                        <Label layoutX="17.0" layoutY="95.0" text="EndX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="17.0" layoutY="130.0" text="EndY">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="endY" layoutX="74.0" layoutY="127.0" prefHeight="25.0" prefWidth="80.0" />
-                        <TextField fx:id="endX" layoutX="74.0" layoutY="93.0" prefHeight="25.0" prefWidth="80.0" />
-                        <TextField fx:id="shipDeep" layoutX="75.0" layoutY="162.0" prefHeight="25.0" prefWidth="80.0" />
-                        <Button layoutX="114.0" layoutY="546.0" mnemonicParsing="false" onAction="#enterTheDeep" prefHeight="35.0" prefWidth="70.0" text="setDeep" textAlignment="CENTER" />
-                        <Label layoutX="18.0" layoutY="166.0" prefHeight="17.0" prefWidth="33.0" text="Deep" />
-                        <TextField fx:id="startY" layoutX="74.0" layoutY="56.0" prefHeight="25.0" prefWidth="80.0" />
-                        <TextField fx:id="startX" layoutX="74.0" layoutY="22.0" prefHeight="25.0" prefWidth="80.0" />
-                        <Label layoutX="15.0" layoutY="24.0" text="StartX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="15.0" layoutY="58.0" text="StartY">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="dinamicX" layoutX="75.0" layoutY="203.0" prefHeight="25.0" prefWidth="80.0" />
-                        <TextField fx:id="dinamicY" layoutX="74.0" layoutY="242.0" prefHeight="25.0" prefWidth="80.0" />
-                        <TextField fx:id="dinamicR" layoutX="74.0" layoutY="279.0" prefHeight="25.0" prefWidth="80.0" />
-                        <Label layoutX="18.0" layoutY="207.0" text="CenterX" />
-                        <Label layoutX="18.0" layoutY="246.0" text="CenterY" />
-                        <Label layoutX="21.0" layoutY="282.0" text="R" />
-                        <TextArea fx:id="dinamicDescriptionArea" layoutX="17.0" layoutY="318.0" prefHeight="191.0" prefWidth="182.0" />
-                        <Button fx:id="dinamicButton" layoutX="114.0" layoutY="590.0" mnemonicParsing="false" onAction="#dinamicButtonAction" prefHeight="35.0" prefWidth="70.0" text="setLet" />
-                        <Separator layoutX="8.0" layoutY="194.0" prefWidth="200.0" />
-                        <Separator layoutX="8.0" layoutY="533.0" prefWidth="200.0" />
-                            </children>
-                        </Pane>
-                    </children>
-                </HBox>
+                <HBox prefHeight="457.0" prefWidth="949.0">
+               <children>
+                  <ScrollPane prefHeight="445.0" prefWidth="459.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="450.0">
+                           <children>
+                              <ImageView fitHeight="443.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label prefHeight="37.0" prefWidth="91.0" text="Ширина" />
+                        <TextField fx:id="lw" text="3" />
+                        <Label text="Высота" />
+                        <TextField fx:id="lh" text="3">
+                           <opaqueInsets>
+                              <Insets bottom="1100.0" />
+                           </opaqueInsets>
+                        </TextField>
+                        <Button fx:id="buttonCreateAtlas" mnemonicParsing="false" onAction="#CreateAtlas" prefHeight="81.0" prefWidth="100.0" text="Построить атлас" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children></HBox>
                 <ToolBar maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="949.0">
                     <items>
                         <Button fx:id="buttonClear" mnemonicParsing="false" onAction="#clearClick" prefWidth="43.0" text="Clear" />

@@ -32,10 +32,10 @@ class ImageProcessor {
 
 
         try {
-            String patternPathIn ="D:\\ForTheAtlasTexture\\01\\";
-            String patternPathTo ="D:\\ForTheAtlasTexture\\Result\\";
+            String patternPathIn ="i:\\ForTheAtlasTexture\\02\\";
+            String patternPathTo ="i:\\ForTheAtlasTexture\\Result\\";
             String fileName = "Circle (";//25)
-            String fileNameTo = "res64.png";//Circle (25)
+            String fileNameTo = "res6401.png";//Circle (25)
 
             Point nodeResolution = new Point(204, 204);
             Point targetSize = new Point(5, 5); //int colums = 6, lines = 6;

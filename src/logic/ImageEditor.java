@@ -8,17 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ImageEditor {
-
-    public  void createAtlas(ArrayList<BufferedImage> images, Point targetSize) {
+    private BufferedImage result;
+    void createAtlas(ArrayList<BufferedImage> images, Point targetSize) {
 
             Point nodeResolution = new Point(images.get(0).getWidth(), images.get(0).getHeight());
 
             Point resultResolution = getTargetResolution(targetSize, nodeResolution);
 
-            BufferedImage result = new BufferedImage(resultResolution.x, resultResolution.y, BufferedImage.TYPE_INT_ARGB);
+            result = new BufferedImage(resultResolution.x, resultResolution.y, BufferedImage.TYPE_INT_ARGB);
 
             int maxValuex = targetSize.x > targetSize.y ? targetSize.x : targetSize.x;
-            //int maxValuey = targetSize.x > targetSize.y ? targetSize.x : targetSize.y;
 
             int i = 1;
             for(BufferedImage source : images) {
@@ -41,16 +40,22 @@ public class ImageEditor {
                 }
                 i++;
             }
+        File output = new File("I:\\ForTheAtlasTexture\\Result\\res1111111121.png");
+        try {
+            ImageIO.write(result, "png", output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-            // Созраняем результат в новый файл
-            File output = new File(pathNameTo);
-            ImageIO.write(resizeImage(result, 1024, 1024), "png", output);
-//            ImageIO.write(result, "png", output);
-            //System.out.println("Min = " + pathNameTo)
+    public BufferedImage getImage(){
+        return result;
     }
 
     public static Point getNearestResolutionExpTwo(Point imageCount, Point imageResolution){
         int [] defaultResolution = { 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384};
+
+        int i = 1;//просто чтоб было
 
         Point preTargetResolution = getTargetResolution( imageCount, imageResolution );
         Point resultPoint = new Point();
@@ -73,7 +78,7 @@ public class ImageEditor {
     }
 
 
-    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) throws IOException {
+    public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_AREA_AVERAGING);
         BufferedImage outputImage = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
         outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
