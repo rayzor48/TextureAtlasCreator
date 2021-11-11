@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -14,6 +16,7 @@ import logic.ImageEditor;
 import logic.ImageReader;
 
 import javax.imageio.ImageIO;
+import javafx.scene.image.ImageView;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +41,8 @@ public class guiController {
     @FXML
     public Button buttonMinus;
     @FXML
+    public ImageView iv_1;
+    @FXML
 
     private int size = 50;
     private String style;
@@ -52,11 +57,12 @@ public class guiController {
 
     public void CreateAtlas(ActionEvent actionEvent){
 
-        if(!(lh.getText().equals("") || lw.getText().equals(""))){
+        if(isNotEmpty()){
             int weight = Integer.parseInt(lw.getText());
             int height = Integer.parseInt(lh.getText());
             Controller.doProcessImage( new Point(weight, height));
 
+            iv_1.setImage(Controller.getImage());
         }
     }
 
@@ -135,4 +141,27 @@ public class guiController {
         Controller.saveFile(files, "png");
         System.out.println(files.getPath());
     }
+
+
+    public void updateDemo(MouseEvent inputMethodEvent) {
+//        if(isNotEmpty()){
+//            int weight = Integer.parseInt(lw.getText());
+//            int height = Integer.parseInt(lh.getText());
+//            Controller.doDemoProcessImage( new Point(weight, height));
+//        }
+    }
+
+    private boolean isNotEmpty(){
+        return !(lh.getText().equals("") || lw.getText().equals(""));
+    }
+
+//    public void lh_event12(MouseEvent mouseEvent) {
+//        if(isNotEmpty()){
+//            System.out.println("bugaga2");
+//
+//        } else {
+//            System.out.println("bugaga");
+//
+//        }
+//    }
 }

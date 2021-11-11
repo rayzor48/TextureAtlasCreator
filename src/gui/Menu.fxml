@@ -58,7 +58,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="450.0">
                            <children>
-                              <ImageView fitHeight="443.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="iv_1" fitHeight="443.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -66,9 +66,9 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label prefHeight="37.0" prefWidth="91.0" text="Ширина" />
-                        <TextField fx:id="lw" text="3" />
+                        <TextField fx:id="lw" onMouseClicked="#updateDemo" text="3" />
                         <Label text="Высота" />
-                        <TextField fx:id="lh" text="3">
+                        <TextField fx:id="lh" onMouseClicked="#updateDemo" text="3">
                            <opaqueInsets>
                               <Insets bottom="1100.0" />
                            </opaqueInsets>

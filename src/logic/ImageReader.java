@@ -19,6 +19,17 @@ public class ImageReader {
         ReadFiles(files);
     }
 
+    public void demoImageReader(int max){
+        String path = "/Images/";
+        List<File> files= new ArrayList<File>();
+
+        for(int i = 0; i < 130 && i < max; i++){
+            files.add(new File(path + i + ".png"));
+        }
+
+        ReadFiles(files);
+    }
+
     public void ReadFiles(List<File> files){
          try {
              for(File f : files){

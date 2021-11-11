@@ -1,14 +1,17 @@
 package logic;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class ImageEditor {
     private BufferedImage result;
+
+
+    public void createDemoAtlas(ArrayList<BufferedImage> images, Point targetSize){
+        createAtlas(images, targetSize);
+    }
+
     void createAtlas(ArrayList<BufferedImage> images, Point targetSize) {
 
             Point nodeResolution = new Point(images.get(0).getWidth(), images.get(0).getHeight());

@@ -1,5 +1,9 @@
 package logic;
 
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -12,12 +16,17 @@ public class Controller {
     private static List<File> toFiles;
     private static ImageEditor editor;
     private static List<BufferedImage> files;
+    private static List<BufferedImage> demoFiles;
     private static BufferedImage image;
-
 
     public static void createEditor(){
         if(editor == null){
             editor = new ImageEditor();
+
+            //говнокод
+            ImageReader ir = new ImageReader();
+            ir.demoImageReader(130);
+            demoFiles = ir.getImages();
         }
     }
 
@@ -42,6 +51,33 @@ public class Controller {
         }
          editor.createAtlas((ArrayList<BufferedImage>) files, grid);
          image = editor.getImage();
+    }
+
+    public static void doDemoProcessImage(Point grid){
+        if(files == null){
+            System.out.println("files = null");
+        }
+        editor.createAtlas((ArrayList<BufferedImage>) demoFiles, grid);
+        image = editor.getImage();
+    }
+
+    public static WritableImage getImage(){
+        return convertToFxImage(image);
+    }
+
+    private static WritableImage convertToFxImage(BufferedImage image) {
+        WritableImage wr = null;
+        if (image != null) {
+            wr = new WritableImage(image.getWidth(), image.getHeight());
+            PixelWriter pw = wr.getPixelWriter();
+            for (int x = 0; x < image.getWidth(); x++) {
+                for (int y = 0; y < image.getHeight(); y++) {
+                    pw.setArgb(x, y, image.getRGB(x, y));
+                }
+            }
+        }
+
+        return wr;
     }
 
     public static void saveFile(File file, String format){
