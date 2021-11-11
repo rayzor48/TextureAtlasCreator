@@ -9,9 +9,6 @@ import java.util.List;
 
 public class Controller {
 
-    private static char [][] mapPicture;
-    private static char [][] mapPictureFilter;
-    private static String pathToFile;//"C:\\Users\\rayzo\\Desktop\\image1.png"
     private static List<File> toFiles;
     private static ImageEditor editor;
     private static List<BufferedImage> files;
@@ -24,8 +21,19 @@ public class Controller {
         }
     }
 
-    public static void setFile(List<File> file){
-        toFiles = file;
+    public static void openFiles(List<File> files){
+        setFile(files);
+        readFiles();
+    }
+
+    private static void setFile(List<File> files){
+        toFiles = files;
+    }
+
+    private static void readFiles(){
+        ImageReader ir = new ImageReader();
+        ir.ReadFiles(toFiles);
+        files = ir.getImages();
     }
 
     public static void doProcessImage(Point grid){
@@ -34,12 +42,6 @@ public class Controller {
         }
          editor.createAtlas((ArrayList<BufferedImage>) files, grid);
          image = editor.getImage();
-    }
-
-    public static void openFiles(){
-        ImageReader ir = new ImageReader();
-        ir.ReadFiles(toFiles);
-        files = ir.getImages();
     }
 
     public static void saveFile(File file, String format){

@@ -11,10 +11,11 @@ public class guiMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-        primaryStage.setTitle("VKR");
+        primaryStage.setTitle("AtlasCreator");
         primaryStage.setScene(new Scene(root, 960, 720));
         primaryStage.setResizable(false);
         //primaryStage.resizableProperty();
+
         primaryStage.show();
     }
 

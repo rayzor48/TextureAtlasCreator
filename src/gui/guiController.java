@@ -21,8 +21,6 @@ import java.util.List;
 
 
 public class guiController {
-
-
     @FXML
     GridPane gridPane;
     @FXML
@@ -41,14 +39,19 @@ public class guiController {
     public Button buttonMinus;
     @FXML
 
-
     private int size = 50;
     private String style;
-    private int len1, len2;
-    private char[][] mass;
+
+
+    @FXML
+    private void initialize() {
+
+        Controller.createEditor();
+    }
+
 
     public void CreateAtlas(ActionEvent actionEvent){
-        Controller.createEditor();
+
         if(!(lh.getText().equals("") || lw.getText().equals(""))){
             int weight = Integer.parseInt(lw.getText());
             int height = Integer.parseInt(lh.getText());
@@ -95,16 +98,14 @@ public class guiController {
 
     public void openNewFile(ActionEvent actionEvent){
         FileChooser fc = new FileChooser();
-        fc.setTitle("Open Document");//Заголовок диалога
+        fc.setTitle("Open Document");
         fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\02"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file PNG", "*.png"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file JPG", "*.jpg"));
         List<File> selectedFiles = fc.showOpenMultipleDialog(null);
 
         if(selectedFiles!= null){
-            Controller.setFile(selectedFiles);
-            Controller.openFiles();
-
+            Controller.openFiles(selectedFiles);
         } else {
             System.out.println("file is not..");
         }
@@ -112,15 +113,26 @@ public class guiController {
 
     public void saveNewFile(ActionEvent actionEvent){
         FileChooser fc = new FileChooser();
-        fc.setTitle("Save Document In");
-        File defaultDirectory = new File("d:");
+        fc.setTitle("Save Document");
+        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\result"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file PNG", "*.png"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file JPG", "*.jpg"));
-        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\result"));
-        File selectedDirectory = fc.showSaveDialog(null);
-        System.out.println(selectedDirectory.getPath());
-//        selectedDirectory = new File("D:\\Labs_JAVA\\result.png");
-        System.out.println(selectedDirectory);
-        Controller.saveFile(selectedDirectory, "png");
+        File selectedFiles = fc.showSaveDialog(null);
+
+        if(selectedFiles!= null){
+            try{
+                saveFile(selectedFiles);
+            } catch (Exception e){
+
+                System.err.println("Images is null");
+            }
+        } else {
+            System.out.println("file is not..");
+        }
+    }
+
+    private void saveFile(File files) throws NullPointerException{
+        Controller.saveFile(files, "png");
+        System.out.println(files.getPath());
     }
 }

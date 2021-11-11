@@ -19,8 +19,14 @@ public class ImageEditor {
 
             int maxValuex = targetSize.x > targetSize.y ? targetSize.x : targetSize.x;
 
-            int i = 1;
-            for(BufferedImage source : images) {
+            int imageCount = targetSize.x * targetSize.y;
+            imageCount = imageCount > images.size() ? images.size() : imageCount;
+
+            System.out.println("imageCount = " + imageCount);
+
+            BufferedImage source;
+            for(int i = 1; i <= imageCount; i++ ) {
+                source = images.get(i - 1);
                 for (int x = 0; x < source.getWidth(); x++) {
                     for (int y = 0; y < source.getHeight(); y++) {
                         Color color = new Color(source.getRGB(x, y));
@@ -36,16 +42,8 @@ public class ImageEditor {
                         int a = 1;
                         result.setRGB(nodeResolution.x * ((i-1)%maxValuex) + x, nodeResolution.y * ((i-1)/maxValuex) + y, newColor.getRGB());
                     }
-
                 }
-                i++;
             }
-        File output = new File("I:\\ForTheAtlasTexture\\Result\\res1111111121.png");
-        try {
-            ImageIO.write(result, "png", output);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public BufferedImage getImage(){
