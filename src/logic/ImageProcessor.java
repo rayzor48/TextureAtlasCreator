@@ -111,7 +111,8 @@ class ImageProcessor {
             }
                         // Созраняем результат в новый файл
             File output = new File(pathNameTo);
-            ImageIO.write(resizeImage(result, 1024, 1024), "png", output);
+            File output1 = new File("src\\Images");
+            ImageIO.write(resizeImage(result, 1024, 1024), "png", output1);
 //            ImageIO.write(result, "png", output);
             //System.out.println("Min = " + pathNameTo);
         } catch (IOException e) {

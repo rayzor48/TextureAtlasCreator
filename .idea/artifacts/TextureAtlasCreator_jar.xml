@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="TextureAtlasCreator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TextureAtlasCreator_jar</output-path>
+    <root id="root">
+      <element id="archive" name="TextureAtlasCreator.jar">
+        <element id="module-output" name="TextureAtlasCreator" />
+      </element>
+    </root>
+  </artifact>
+</component>

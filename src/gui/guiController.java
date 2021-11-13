@@ -43,6 +43,8 @@ public class guiController {
     @FXML
     public ImageView iv_1;
     @FXML
+    public ImageView iv_2;
+    @FXML
 
     private int size = 50;
     private String style;
@@ -51,7 +53,14 @@ public class guiController {
     @FXML
     private void initialize() {
 
+        //создать эдитор
+        //потом создать шаблон сетки
+        //потом ожидать открытия файла
+        //обработки файла
+        //записи файла
+
         Controller.createEditor();
+        iv_2.setImage(Controller.getDemoImage());
     }
 
 
@@ -66,46 +75,10 @@ public class guiController {
         }
     }
 
-    public void sizePlus(ActionEvent actionEvent){
-        String s;
-        String buf;
-        size +=50;
-        //System.out.println(" size " + size);
-        for(Node node : gridPane.getChildren()){
-            style = node.getStyle();
-            buf = style.substring(0, 42) + String.valueOf(size) + "%;" + style.substring(style.indexOf("-fx-border-color"));
-            //System.out.println(buf);
-            node.setStyle(buf);
-        }
-    }
-
-    public void sizeMinus(ActionEvent actionEvent){
-        String s = "10";
-        String buf;
-        if(size >0){
-            size -=50;
-        }
-        //System.out.println(" size " + size);
-        for(Node node : gridPane.getChildren()){
-            style = node.getStyle();
-            buf = style.substring(0, 42) + String.valueOf(size) + "%;" + style.substring(style.indexOf("-fx-border-color"));
-            //System.out.println(buf);
-            node.setStyle(buf);
-        }
-    }
-
-    public void clearClick(ActionEvent actionEvent) throws IOException {
-        gridPane.getChildren().clear();
-        //System.out.println(gridPane.getChildren().size());
-            /*for(logic.Node node : gridPane.getChildren()){
-                node.setStyle("-fx-border-style: solid; -fx-border-width: " + size + "%; -fx-border-color:#FFFFFF;");
-            }*/
-    }
-
     public void openNewFile(ActionEvent actionEvent){
         FileChooser fc = new FileChooser();
         fc.setTitle("Open Document");
-        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\02"));
+//        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\02"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file PNG", "*.png"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file JPG", "*.jpg"));
         List<File> selectedFiles = fc.showOpenMultipleDialog(null);
@@ -120,7 +93,7 @@ public class guiController {
     public void saveNewFile(ActionEvent actionEvent){
         FileChooser fc = new FileChooser();
         fc.setTitle("Save Document");
-        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\result"));
+//        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\result"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file PNG", "*.png"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file JPG", "*.jpg"));
         File selectedFiles = fc.showSaveDialog(null);
@@ -164,4 +137,42 @@ public class guiController {
 //
 //        }
 //    }
+
+
+
+    public void sizePlus(ActionEvent actionEvent){
+        String s;
+        String buf;
+        size +=50;
+        //System.out.println(" size " + size);
+        for(Node node : gridPane.getChildren()){
+            style = node.getStyle();
+            buf = style.substring(0, 42) + String.valueOf(size) + "%;" + style.substring(style.indexOf("-fx-border-color"));
+            //System.out.println(buf);
+            node.setStyle(buf);
+        }
+    }
+
+    public void sizeMinus(ActionEvent actionEvent){
+        String s = "10";
+        String buf;
+        if(size >0){
+            size -=50;
+        }
+        //System.out.println(" size " + size);
+        for(Node node : gridPane.getChildren()){
+            style = node.getStyle();
+            buf = style.substring(0, 42) + String.valueOf(size) + "%;" + style.substring(style.indexOf("-fx-border-color"));
+            //System.out.println(buf);
+            node.setStyle(buf);
+        }
+    }
+
+    public void clearClick(ActionEvent actionEvent) throws IOException {
+        gridPane.getChildren().clear();
+        //System.out.println(gridPane.getChildren().size());
+            /*for(logic.Node node : gridPane.getChildren()){
+                node.setStyle("-fx-border-style: solid; -fx-border-width: " + size + "%; -fx-border-color:#FFFFFF;");
+            }*/
+    }
 }

@@ -12,7 +12,7 @@ public class guiMain extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("AtlasCreator");
-        primaryStage.setScene(new Scene(root, 960, 720));
+        primaryStage.setScene(new Scene(root, 960, 500));
         primaryStage.setResizable(false);
         //primaryStage.resizableProperty();
 

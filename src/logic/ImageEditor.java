@@ -1,7 +1,10 @@
 package logic;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ImageEditor {
@@ -13,7 +16,7 @@ public class ImageEditor {
     }
 
     void createAtlas(ArrayList<BufferedImage> images, Point targetSize) {
-
+        try {
             Point nodeResolution = new Point(images.get(0).getWidth(), images.get(0).getHeight());
 
             Point resultResolution = getTargetResolution(targetSize, nodeResolution);
@@ -38,7 +41,7 @@ public class ImageEditor {
                         int blue = color.getBlue();
                         int red = color.getRed();
                         int green = color.getGreen();
-                        int alpha = color.getAlpha();//source.getRGB(x, y) >> 24 & 0xff;
+                        int alpha = source.getRGB(x, y) >> 24 & 0xff;//костыль для получения альфы - color.getAlpha();
 //
                         Color newColor = new Color(red, green, blue, alpha);
 
@@ -47,6 +50,17 @@ public class ImageEditor {
                     }
                 }
             }
+
+        File output1 = new File("src\\Images\\imagege.png");
+        ImageIO.write(resizeImage(result, 1024, 1024), "png", output1);
+//            ImageIO.write(result, "png", output);
+        //System.out.println("Min = " + pathNameTo);
+    } catch (IOException e) {
+
+        // При открытии и сохранении файлов, может произойти неожиданный случай.
+        // И на этот случай у нас try catch
+        System.out.println("Файл не найден или не удалось сохранить");
+    }
     }
 
     public BufferedImage getImage(){

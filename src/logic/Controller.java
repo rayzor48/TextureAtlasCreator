@@ -18,6 +18,7 @@ public class Controller {
     private static List<BufferedImage> files;
     private static List<BufferedImage> demoFiles;
     private static BufferedImage image;
+    private static BufferedImage demoImage;
 
     public static void createEditor(){
         if(editor == null){
@@ -27,6 +28,9 @@ public class Controller {
             ImageReader ir = new ImageReader();
             ir.demoImageReader(130);
             demoFiles = ir.getImages();
+
+            editor.createDemoAtlas((ArrayList<BufferedImage>) demoFiles, new Point(3, 3));
+            demoImage = editor.getImage();
         }
     }
 
@@ -49,6 +53,7 @@ public class Controller {
         if(files == null){
             System.out.println("files = null");
         }
+
          editor.createAtlas((ArrayList<BufferedImage>) files, grid);
          image = editor.getImage();
     }
@@ -63,6 +68,10 @@ public class Controller {
 
     public static WritableImage getImage(){
         return convertToFxImage(image);
+    }
+
+    public static WritableImage getDemoImage(){
+        return convertToFxImage(demoImage);
     }
 
     private static WritableImage convertToFxImage(BufferedImage image) {

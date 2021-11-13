@@ -12,82 +12,72 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="536.0" prefWidth="949.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
-    <columnConstraints>
-      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-    </columnConstraints>
-    <children>
-        <VBox prefHeight="538.0" prefWidth="949.0" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2147483647" GridPane.vgrow="ALWAYS">
-            <children>
-                <MenuBar maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="781.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="File">
-                            <items>
-                                <MenuItem fx:id="OpenFile" mnemonicParsing="false" onAction="#openNewFile" text="Open file" />
-                                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveNewFile" text="Save" />
-                                <MenuItem mnemonicParsing="false" text="Load" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Delete" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About" />
-                            </items>
-                        </Menu>
-                    </menus>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </MenuBar>
-                <HBox prefHeight="457.0" prefWidth="949.0">
-               <children>
-                  <ScrollPane prefHeight="445.0" prefWidth="459.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="450.0">
-                           <children>
-                              <ImageView fx:id="iv_1" fitHeight="443.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+
+<VBox prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
+      <children>
+          <MenuBar maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="781.0">
+              <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                      <items>
+                          <MenuItem fx:id="OpenFile" mnemonicParsing="false" onAction="#openNewFile" text="Open file" />
+                          <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveNewFile" text="Save" />
+                          <MenuItem mnemonicParsing="false" text="Load" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                      <items>
+                          <MenuItem mnemonicParsing="false" text="Delete" />
+                      </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                      <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                      </items>
+                  </Menu>
+              </menus>
+              <opaqueInsets>
+                  <Insets />
+              </opaqueInsets>
+              <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+              </cursor>
+          </MenuBar>
+          <HBox prefHeight="457.0" prefWidth="949.0">
+         <children>
+            <ScrollPane prefHeight="445.0" prefWidth="459.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="885.0">
                      <children>
-                        <Label prefHeight="37.0" prefWidth="91.0" text="Ширина" />
-                        <TextField fx:id="lw" onMouseClicked="#updateDemo" text="3" />
-                        <Label text="Высота" />
-                        <TextField fx:id="lh" onMouseClicked="#updateDemo" text="3">
-                           <opaqueInsets>
-                              <Insets bottom="1100.0" />
-                           </opaqueInsets>
-                        </TextField>
-                        <Button fx:id="buttonCreateAtlas" mnemonicParsing="false" onAction="#CreateAtlas" prefHeight="81.0" prefWidth="100.0" text="Построить атлас" textAlignment="CENTER" wrapText="true" />
+                        <ImageView fx:id="iv_2" fitHeight="433.0" fitWidth="429.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="iv_1" fitHeight="443.0" fitWidth="420.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
-                  </VBox>
-               </children></HBox>
-                <ToolBar maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="949.0">
-                    <items>
-                        <Button fx:id="buttonClear" mnemonicParsing="false" onAction="#clearClick" prefWidth="43.0" text="Clear" />
-                        <Button fx:id="buttonMinus" mnemonicParsing="false" onAction="#sizeMinus" text="-" />
-                        <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#sizePlus" text="+" />
-                    </items>
-                </ToolBar>
-            </children>
-        </VBox>
-    </children>
-   <rowConstraints>
-      <RowConstraints />
-   </rowConstraints>
-</GridPane>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label prefHeight="37.0" prefWidth="91.0" text="Ширина" />
+                  <TextField fx:id="lw" onMouseClicked="#updateDemo" text="3" />
+                  <Label text="Высота" />
+                  <TextField fx:id="lh" onMouseClicked="#updateDemo" text="3">
+                     <opaqueInsets>
+                        <Insets bottom="1100.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <Button fx:id="buttonCreateAtlas" mnemonicParsing="false" onAction="#CreateAtlas" prefHeight="81.0" prefWidth="100.0" text="Построить атлас" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+          <ToolBar maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="949.0">
+              <items>
+                  <Button fx:id="buttonClear" mnemonicParsing="false" onAction="#clearClick" prefWidth="43.0" text="Clear" />
+                  <Button fx:id="buttonMinus" mnemonicParsing="false" onAction="#sizeMinus" text="-" />
+                  <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#sizePlus" text="+" />
+              </items>
+          </ToolBar>
+      </children>
+  </VBox>
