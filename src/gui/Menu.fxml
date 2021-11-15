@@ -8,13 +8,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 
 <VBox prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.guiController">
       <children>
@@ -45,9 +46,9 @@
                   <Cursor fx:constant="DEFAULT" />
               </cursor>
           </MenuBar>
-          <HBox prefHeight="457.0" prefWidth="949.0">
+          <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="839.0" prefWidth="1000.0">
          <children>
-            <ScrollPane prefHeight="445.0" prefWidth="459.0">
+            <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="839.0" prefWidth="849.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="468.0" prefWidth="885.0">
                      <children>
@@ -57,17 +58,26 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox prefHeight="839.0" prefWidth="155.0">
                <children>
-                  <Label prefHeight="37.0" prefWidth="91.0" text="Ширина" />
-                  <TextField fx:id="lw" onMouseClicked="#updateDemo" text="3" />
-                  <Label text="Высота" />
-                  <TextField fx:id="lh" onMouseClicked="#updateDemo" text="3">
-                     <opaqueInsets>
-                        <Insets bottom="1100.0" />
-                     </opaqueInsets>
-                  </TextField>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="123.0" text="Сетка изображений" textAlignment="CENTER" />
+                        <Separator prefWidth="200.0" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="91.0" text="Ширина" />
+                        <TextField fx:id="lw" text="3" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="150.0" text="Высота" />
+                        <TextField fx:id="lh" alignment="TOP_LEFT" text="3">
+                           <opaqueInsets>
+                              <Insets bottom="1100.0" left="100.0" right="10.0" />
+                           </opaqueInsets>
+                        </TextField>
+                        <Separator prefHeight="15.0" prefWidth="153.0" />
+                     </children>
+                  </VBox>
                   <Button fx:id="buttonCreateAtlas" mnemonicParsing="false" onAction="#CreateAtlas" prefHeight="81.0" prefWidth="100.0" text="Построить атлас" textAlignment="CENTER" wrapText="true" />
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>

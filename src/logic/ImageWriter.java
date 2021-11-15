@@ -15,7 +15,6 @@ public class ImageWriter {
     public void writeImage(File fileTo, BufferedImage image, String format) {
 
         try {
-
             System.out.println("res = " + ImageIO.write(image, format, fileTo));
         } catch (IOException e) {
             e.printStackTrace();

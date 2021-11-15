@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import logic.Controller;
 import logic.ImageEditor;
 import logic.ImageReader;
@@ -54,13 +55,19 @@ public class guiController {
     private void initialize() {
 
         //создать эдитор
-        //потом создать шаблон сетки
+        //потом создать шаблон сетки (После того как ввели размерность сетки)
         //потом ожидать открытия файла
         //обработки файла
         //записи файла
 
         Controller.createEditor();
-        iv_2.setImage(Controller.getDemoImage());
+
+
+        lh.textProperty().addListener(
+                (observable, oldValue, newValue) -> updateDemo());
+
+        lw.textProperty().addListener(
+                (observable, oldValue, newValue) -> updateDemo());
     }
 
 
@@ -93,7 +100,6 @@ public class guiController {
     public void saveNewFile(ActionEvent actionEvent){
         FileChooser fc = new FileChooser();
         fc.setTitle("Save Document");
-//        fc.setInitialDirectory(new File("I:\\ForTheAtlasTexture\\result"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file PNG", "*.png"));
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("file JPG", "*.jpg"));
         File selectedFiles = fc.showSaveDialog(null);
@@ -116,29 +122,22 @@ public class guiController {
     }
 
 
-    public void updateDemo(MouseEvent inputMethodEvent) {
-//        if(isNotEmpty()){
-//            int weight = Integer.parseInt(lw.getText());
-//            int height = Integer.parseInt(lh.getText());
-//            Controller.doDemoProcessImage( new Point(weight, height));
-//        }
+    private void updateDemo(){
+        Long timeStart = System.currentTimeMillis();
+        if(isNotEmpty()){
+            int weight = Integer.parseInt(lw.getText());
+            int height = Integer.parseInt(lh.getText());
+            Controller.createDemoPattern(  new Point(weight, height));
+            iv_2.setImage(Controller.getDemoImage());
+        }
+
+        Long timeEnd = System.currentTimeMillis();
+        System.out.println("TimeWork = " + ((double)(timeEnd - timeStart)/(double)1000000 ));
     }
 
     private boolean isNotEmpty(){
         return !(lh.getText().equals("") || lw.getText().equals(""));
     }
-
-//    public void lh_event12(MouseEvent mouseEvent) {
-//        if(isNotEmpty()){
-//            System.out.println("bugaga2");
-//
-//        } else {
-//            System.out.println("bugaga");
-//
-//        }
-//    }
-
-
 
     public void sizePlus(ActionEvent actionEvent){
         String s;

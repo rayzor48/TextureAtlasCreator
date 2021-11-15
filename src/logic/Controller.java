@@ -23,14 +23,25 @@ public class Controller {
     public static void createEditor(){
         if(editor == null){
             editor = new ImageEditor();
+            loadDemoFiles();
+        }
+    }
 
+    public static void createDemoPattern(Point gridSize){
+//
+
+        editor.createAtlas((ArrayList<BufferedImage>) demoFiles, gridSize);
+        demoImage = editor.getImage();
+
+    }
+
+    private static void loadDemoFiles(){
+
+        if(demoFiles == null) {
             //говнокод
             ImageReader ir = new ImageReader();
-            ir.demoImageReader(130);
+            ir.getListPuthPatternImages(130);
             demoFiles = ir.getImages();
-
-            editor.createDemoAtlas((ArrayList<BufferedImage>) demoFiles, new Point(3, 3));
-            demoImage = editor.getImage();
         }
     }
 
@@ -56,14 +67,6 @@ public class Controller {
 
          editor.createAtlas((ArrayList<BufferedImage>) files, grid);
          image = editor.getImage();
-    }
-
-    public static void doDemoProcessImage(Point grid){
-        if(files == null){
-            System.out.println("files = null");
-        }
-        editor.createAtlas((ArrayList<BufferedImage>) demoFiles, grid);
-        image = editor.getImage();
     }
 
     public static WritableImage getImage(){

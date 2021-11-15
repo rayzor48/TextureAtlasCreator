@@ -3,16 +3,12 @@ package logic;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ImageReader {
 
     private List<BufferedImage> images;
-    private List<BufferedImage> demoImages;
 
     public ImageReader() {
         images = new ArrayList<BufferedImage>();
@@ -23,11 +19,15 @@ public class ImageReader {
         ReadFiles(files);
     }
 
-    public void demoImageReader(int max)  {
-        String path = "Images/kk/";
+    public void getListPuthPatternImages(int countDemoImages)  {
+        String path;
+        String absolutePath = new File("./").getAbsolutePath();
+        absolutePath = absolutePath.substring(0, absolutePath.length() - 1);
+
         List<File> files= new ArrayList<File>();
-        for(int i = 1; i <= 130 && i < max; i++){
-            path = "D:\\Labs_JAVA\\Ulitka\\TextureAtlasCreator\\src\\Images\\" + i + ".png";
+
+        for(int i = 1; i <= 130 && i < countDemoImages; i++){
+            path = absolutePath + "src\\Images\\" + i + ".png";//D:\\Labs_JAVA\\Ulitka\\TextureAtlasCreator\\src\\Images\\" + i + ".png";
             files.add(new File( path));
         }
 
@@ -49,9 +49,5 @@ public class ImageReader {
 
      public List<BufferedImage> getImages(){
         return images;
-     }
-
-     public List<BufferedImage> getDemoImages(){
-        return demoImages;
      }
 }

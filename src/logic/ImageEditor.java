@@ -10,57 +10,40 @@ import java.util.ArrayList;
 public class ImageEditor {
     private BufferedImage result;
 
-
-    public void createDemoAtlas(ArrayList<BufferedImage> images, Point targetSize){
-        createAtlas(images, targetSize);
-    }
-
     void createAtlas(ArrayList<BufferedImage> images, Point targetSize) {
-        try {
-            Point nodeResolution = new Point(images.get(0).getWidth(), images.get(0).getHeight());
+        Point nodeResolution = new Point(images.get(0).getWidth(), images.get(0).getHeight());
 
-            Point resultResolution = getTargetResolution(targetSize, nodeResolution);
+        Point resultResolution = getTargetResolution(targetSize, nodeResolution);
 
-            result = new BufferedImage(resultResolution.x, resultResolution.y, BufferedImage.TYPE_INT_ARGB);
+        result = new BufferedImage(resultResolution.x, resultResolution.y, BufferedImage.TYPE_INT_ARGB);
 
-            int maxValuex = targetSize.x > targetSize.y ? targetSize.x : targetSize.x;
+        int maxValuex = targetSize.x > targetSize.y ? targetSize.x : targetSize.x;
 
-            int imageCount = targetSize.x * targetSize.y;
-            imageCount = imageCount > images.size() ? images.size() : imageCount;
+        int imageCount = targetSize.x * targetSize.y;
+        imageCount = imageCount > images.size() ? images.size() : imageCount;
 
-            System.out.println("imageCount = " + imageCount);
+        System.out.println("imageCount = " + imageCount);
 
-            BufferedImage source;
-            for(int i = 1; i <= imageCount; i++ ) {
-                source = images.get(i - 1);
-                for (int x = 0; x < source.getWidth(); x++) {
-                    for (int y = 0; y < source.getHeight(); y++) {
-                        Color color = new Color(source.getRGB(x, y));
+        BufferedImage source;
+        for (int i = 1; i <= imageCount; i++) {
+            source = images.get(i - 1);
+            for (int x = 0; x < source.getWidth(); x++) {
+                for (int y = 0; y < source.getHeight(); y++) {
+                    Color color = new Color(source.getRGB(x, y));
 
-                        // Получаем каналы этого цвета
-                        int blue = color.getBlue();
-                        int red = color.getRed();
-                        int green = color.getGreen();
-                        int alpha = source.getRGB(x, y) >> 24 & 0xff;//костыль для получения альфы - color.getAlpha();
+                    // Получаем каналы этого цвета
+                    int blue = color.getBlue();
+                    int red = color.getRed();
+                    int green = color.getGreen();
+                    int alpha = source.getRGB(x, y) >> 24 & 0xff;//костыль для получения альфы - color.getAlpha();
 //
-                        Color newColor = new Color(red, green, blue, alpha);
+                    Color newColor = new Color(red, green, blue, alpha);
 
-                        int a = 1;
-                        result.setRGB(nodeResolution.x * ((i-1)%maxValuex) + x, nodeResolution.y * ((i-1)/maxValuex) + y, newColor.getRGB());
-                    }
+                    int a = 1;
+                    result.setRGB(nodeResolution.x * ((i - 1) % maxValuex) + x, nodeResolution.y * ((i - 1) / maxValuex) + y, newColor.getRGB());
                 }
             }
-
-        File output1 = new File("src\\Images\\imagege.png");
-        ImageIO.write(resizeImage(result, 1024, 1024), "png", output1);
-//            ImageIO.write(result, "png", output);
-        //System.out.println("Min = " + pathNameTo);
-    } catch (IOException e) {
-
-        // При открытии и сохранении файлов, может произойти неожиданный случай.
-        // И на этот случай у нас try catch
-        System.out.println("Файл не найден или не удалось сохранить");
-    }
+        }
     }
 
     public BufferedImage getImage(){
@@ -91,7 +74,6 @@ public class ImageEditor {
 
         return resultPoint;
     }
-
 
     public static BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
         Image resultingImage = originalImage.getScaledInstance(targetWidth, targetHeight, Image.SCALE_AREA_AVERAGING);
